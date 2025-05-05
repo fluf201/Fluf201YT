@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluf201</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, #0f4b5c, #006c72);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        .hero {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/1920px-Flag_of_the_United_Kingdom_%281-2%29.svg.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .cta-btn {
+            background-color: #ff9800;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #ff5722;
+        }
+
+        .content-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0f4b5c;
+        }
+
+        .gifs-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gif-item {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .gif-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .video-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        iframe {
+            border: none;
+            border-radius: 8px;
+            max-width: 100%;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-spinner {
+            font-size: 24px;
+            color: #ff9800;
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ultimate Interactive Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gifs">Gifs</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero" id="home">
+        <h2>Welcome to the Ultimate Experience</h2>
+        <p>Enjoy an interactive journey with YouTube videos and random cool GIFs all over the place!</p>
+        <a href="#gifs" class="cta-btn">Explore Random GIFs</a>
+    </div>
+
+    <div class="content-container">
+        <section id="about">
+            <h2>About Us</h2>
+            <p>bombaclat</p>
+        </section>
+
+        <section id="gifs">
+            <h2>Random GIFs from Tenor</h2>
+            <div class="gifs-container" id="gifsContainer">
+            </div>
+        </section>
+
+        <section id="videos">
+            <h2>Watch YouTube Videos</h2>
+            <div class="video-container">
+                <input type="text" id="youtubeLink" placeholder="Enter YouTube Video URL">
+                <button onclick="embedVideo()">Embed Video</button>
+            </div>
+            <div id="videoPlayer" style="margin-top: 20px;">
+                <div class="loading-spinner">Loading Video...</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Have a project in mind? Get in touch with us for a free consultation!</p>
+            <p>Email: <strong>contact@ultimatewebsite.com</strong></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Ultimate Interactive Website. All rights reserved.</p>
+        <p>Designed by <a href="#">Your Company</a></p>
+    </footer>
+
+    <script>
+        // Function to get random GIF from Tenor API
+        function fetchRandomGif() {
+            fetch('https://api.tenor.com/v1/search?q=random&key=LIVDSRZULELA&limit=5')
+                .then(response => response.json())
+                .then(data => {
+                    const gifsContainer = document.getElementById('gifsContainer');
+                    gifsContainer.innerHTML = ''; // Clear previous gifs
+                    data.results.forEach(gif => {
+                        const gifItem = document.createElement('div');
+                        gifItem.classList.add('gif-item');
+                        const gifImage = document.createElement('img');
+                        gifImage.src = gif.media[0].gif.url;
+                        gifItem.appendChild(gifImage);
+                        gifsContainer.appendChild(gifItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching GIFs:', error));
+        }
+
+        // Function to embed YouTube video from link
+        function embedVideo() {
+            const videoLink = document.getElementById('youtubeLink').value;
+            const videoId = videoLink.split('v=')[1]?.split('&')[0]; // Extract video ID from URL
+            const spinner = document.querySelector('.loading-spinner');
+
+            if (videoId) {
+                // Show loading spinner
+                spinner.style.display = 'block';
+
+                // Create iframe and load video
+                const videoHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`;
+                document.getElementById('videoPlayer').innerHTML = videoHTML;
+
+                // Hide loading spinner after video is loaded
+                const iframe = document.querySelector('iframe');
+                iframe.onload = function() {
+                    spinner.style.display = 'none';
+                };
+            } else {
+                alert('Invalid YouTube link!');
+            }
+        }
+
+        fetchRandomGif();
+    </script>
+</body>
+</html>
